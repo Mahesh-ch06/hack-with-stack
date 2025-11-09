@@ -91,7 +91,7 @@ export default function ShaderShowcase() {
         speed={0.2}
       />
 
-      <header className="relative z-20 flex items-center justify-between p-4 md:p-6">
+      <header className="relative z-20 flex items-center justify-between p-3 sm:p-4 md:p-6">
         <motion.div
           className="flex items-center group cursor-pointer"
           whileHover={{ scale: 1.05 }}
@@ -102,7 +102,7 @@ export default function ShaderShowcase() {
             viewBox="0 0 100 100"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            className="size-8 md:size-10 text-white group-hover:drop-shadow-lg transition-all duration-300"
+            className="size-6 sm:size-8 md:size-10 text-white group-hover:drop-shadow-lg transition-all duration-300"
             style={{
               filter: "url(#logo-glow)",
             }}
@@ -151,25 +151,21 @@ export default function ShaderShowcase() {
           </div>
         </motion.div>
 
-        {/* Navigation - Hidden on mobile */}
-        <nav className="hidden md:flex items-center space-x-2">
-          <a
-            href="#"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            Features
-          </a>
+        {/* Navigation - Responsive */}
+        <nav className="flex items-center space-x-1 sm:space-x-2">
           <Link
             to="/problems"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
           >
-            Problem Statements
+            Problems
           </Link>
           <a
-            href="#"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+            href="https://hack-with-stack.devfolio.co/application"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
           >
-            Docs
+            Register
           </a>
         </nav>
 
@@ -178,15 +174,15 @@ export default function ShaderShowcase() {
           <img 
             src="/logo.png" 
             alt="AIML Club Logo" 
-            className="h-12 w-12 md:h-16 md:w-16 object-contain rounded-full bg-white/10 p-2 backdrop-blur-sm border border-white/20"
+            className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 object-contain rounded-full bg-white/10 p-1.5 sm:p-2 backdrop-blur-sm border border-white/20"
           />
         </div>
       </header>
 
-      <main className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-auto z-20 max-w-2xl">
-        <div className="text-left">
+      <main className="absolute inset-0 flex items-center justify-start z-20 p-4 md:p-8">
+        <div className="text-left max-w-2xl w-full">
           <motion.div
-            className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5 backdrop-blur-sm mb-4 md:mb-6 relative border border-white/10"
+            className="inline-flex items-center px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/5 backdrop-blur-sm mb-4 md:mb-6 relative border border-white/10"
             style={{
               filter: "url(#glass-effect)",
             }}
@@ -195,19 +191,19 @@ export default function ShaderShowcase() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent rounded-full" />
-            <span className="text-white/90 text-xs md:text-sm font-medium relative z-10 tracking-wide">
+            <span className="text-white/90 text-xs sm:text-sm md:text-base font-medium relative z-10 tracking-wide">
               🚀 Join the Ultimate Hackathon Experience
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 md:mb-6 leading-none tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.span
-              className="block font-light text-white/90 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 tracking-wider"
+              className="block font-light text-white/90 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3 tracking-wider"
               style={{
                 background: "linear-gradient(135deg, #ffffff 0%, #06b6d4 30%, #f97316 70%, #ffffff 100%)",
                 WebkitBackgroundClip: "text",
@@ -231,7 +227,7 @@ export default function ShaderShowcase() {
           </motion.h1>
 
           <motion.p
-            className="text-sm md:text-base lg:text-lg font-light text-white/70 mb-6 md:mb-8 leading-relaxed max-w-xl"
+            className="text-sm sm:text-base md:text-lg lg:text-xl font-light text-white/70 mb-8 md:mb-10 leading-relaxed max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -241,14 +237,14 @@ export default function ShaderShowcase() {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-3 md:gap-6 flex-wrap"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <Link to="/problems">
+            <Link to="/problems" className="sm:flex-none">
               <motion.button
-                className="px-6 md:px-10 py-3 md:py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-xs md:text-sm transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm"
+                className="px-6 sm:px-8 md:px-10 py-4 md:py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm min-w-[200px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -259,7 +255,7 @@ export default function ShaderShowcase() {
               href="https://hack-with-stack.devfolio.co/application"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 md:px-10 py-3 md:py-4 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-xs md:text-sm transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl inline-block text-center"
+              className="sm:flex-none px-6 sm:px-8 md:px-10 py-4 md:py-4 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-sm md:text-base transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl inline-block text-center min-w-[200px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -269,18 +265,18 @@ export default function ShaderShowcase() {
         </div>
       </main>
 
-      <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-30 hidden sm:block">
-        <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
+      <div className="absolute bottom-20 right-4 sm:bottom-12 sm:right-6 md:bottom-8 md:right-8 z-30">
+        <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center">
           <PulsingBorder
             colors={["#06b6d4", "#0891b2", "#f97316", "#00FF88", "#FFD700", "#FF6B35", "#ffffff"]}
             colorBack="#00000000"
             speed={1.5}
             style={{
-              width: "48px",
-              height: "48px",
+              width: "36px",
+              height: "36px",
               borderRadius: "50%",
             }}
-            className="md:!w-[60px] md:!h-[60px]"
+            className="sm:!w-[48px] sm:!h-[48px] md:!w-[60px] md:!h-[60px]"
           />
 
           {/* Rotating Text Around the Pulsing Border */}
@@ -293,12 +289,12 @@ export default function ShaderShowcase() {
               repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
-            style={{ transform: "scale(1.6)" }}
+            style={{ transform: "scale(1.4)" }}
           >
             <defs>
               <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
             </defs>
-            <text className="text-xs md:text-sm fill-white/80 font-medium">
+            <text className="text-[10px] sm:text-xs md:text-sm fill-white/80 font-medium">
               <textPath href="#circle" startOffset="0%">
                 AIML Club • AIML Club • AIML Club • AIML Club • AIML Club •
               </textPath>
