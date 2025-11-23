@@ -782,25 +782,23 @@ const Certificates = () => {
               >
                 Close
               </button>
+              <Link
+                to={`/certificate/${previewCertificate.certificateId}`}
+                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-cyan-700 transition-colors flex items-center justify-center gap-2 touch-target"
+              >
+                <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
+                View Full Page
+              </Link>
               <a
                 href={previewCertificate.downloadUrl}
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-cyan-700 transition-colors flex items-center justify-center gap-2 touch-target"
-              >
-                <Download className="h-4 w-4 sm:h-5 sm:w-5" />
-                Download
-              </a>
-              <a
-                href={previewCertificate.downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-blue-600 text-blue-600 text-sm sm:text-base font-medium hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 touch-target"
               >
-                <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Open in New Tab</span>
-                <span className="sm:hidden">Open</span>
+                <Download className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Download</span>
+                <span className="sm:hidden">Save</span>
               </a>
             </div>
           </motion.div>
