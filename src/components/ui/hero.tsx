@@ -3,10 +3,12 @@ import { useEffect, useRef, useState } from "react"
 import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
+import { Award, X, Download } from "lucide-react"
 
 export default function ShaderShowcase() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const [showCertificatePopup, setShowCertificatePopup] = useState(false)
 
   useEffect(() => {
     const handleMouseEnter = () => setIsActive(true)
@@ -24,6 +26,15 @@ export default function ShaderShowcase() {
         container.removeEventListener("mouseleave", handleMouseLeave)
       }
     }
+  }, [])
+
+  useEffect(() => {
+    // Show certificate popup after 5 seconds
+    const timer = setTimeout(() => {
+      setShowCertificatePopup(true)
+    }, 5000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -91,9 +102,9 @@ export default function ShaderShowcase() {
         speed={0.2}
       />
 
-      <header className="relative z-20 flex items-center justify-between p-3 sm:p-4 md:p-6">
+      <header className="relative z-20 flex items-center justify-between p-3 sm:p-4 md:p-6 gap-2 sm:gap-3">
         <motion.div
-          className="flex items-center group cursor-pointer"
+          className="flex items-center group cursor-pointer flex-shrink-0"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
@@ -152,37 +163,43 @@ export default function ShaderShowcase() {
         </motion.div>
 
         {/* Navigation - Responsive */}
-        <nav className="flex items-center space-x-1 sm:space-x-2">
+        <nav className="flex items-center gap-1 sm:gap-2 flex-1 justify-center">
           <Link
             to="/problems"
-            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 md:px-4 py-2 rounded-full hover:bg-white/10 transition-all duration-200 whitespace-nowrap"
           >
             Problems
+          </Link>
+          <Link
+            to="/certificates"
+            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 md:px-4 py-2 rounded-full hover:bg-white/10 transition-all duration-200 whitespace-nowrap"
+          >
+            Certificates
           </Link>
           <a
             href="https://hack-with-stack.devfolio.co/application"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+            className="text-white/80 hover:text-white text-xs sm:text-sm font-light px-2 sm:px-3 md:px-4 py-2 rounded-full hover:bg-white/10 transition-all duration-200 whitespace-nowrap"
           >
             Register
           </a>
         </nav>
 
         {/* Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center flex-shrink-0">
           <img 
             src="/logo.png" 
             alt="AIML Club Logo" 
-            className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 object-contain rounded-full bg-white/10 p-1.5 sm:p-2 backdrop-blur-sm border border-white/20"
+            className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain rounded-full bg-white/10 p-1.5 sm:p-2 backdrop-blur-sm border border-white/20"
           />
         </div>
       </header>
 
-      <main className="absolute inset-0 flex items-center justify-start z-20 p-4 md:p-8">
-        <div className="text-left max-w-2xl w-full">
+      <main className="relative z-10 flex items-center min-h-screen pt-24 pb-32 sm:pt-28 sm:pb-36 px-4 sm:px-6 md:px-8">
+        <div className="text-center sm:text-left max-w-2xl w-full sm:ml-0">
           <motion.div
-            className="inline-flex items-center px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/5 backdrop-blur-sm mb-4 md:mb-6 relative border border-white/10"
+            className="inline-flex items-center px-3 sm:px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-white/5 backdrop-blur-sm mb-4 md:mb-6 relative border border-white/10 mx-auto sm:mx-0"
             style={{
               filter: "url(#glass-effect)",
             }}
@@ -191,19 +208,19 @@ export default function ShaderShowcase() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent rounded-full" />
-            <span className="text-white/90 text-xs sm:text-sm md:text-base font-medium relative z-10 tracking-wide">
+            <span className="text-white/90 text-xs sm:text-sm md:text-base font-medium relative z-10 tracking-wide text-center">
               🚀 Join the Ultimate Hackathon Experience
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-5 md:mb-6 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.span
-              className="block font-light text-white/90 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3 tracking-wider"
+              className="block font-light text-white/90 text-sm sm:text-base md:text-lg lg:text-xl mb-2 sm:mb-2.5 tracking-wider"
               style={{
                 background: "linear-gradient(135deg, #ffffff 0%, #06b6d4 30%, #f97316 70%, #ffffff 100%)",
                 WebkitBackgroundClip: "text",
@@ -227,7 +244,7 @@ export default function ShaderShowcase() {
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl font-light text-white/70 mb-8 md:mb-10 leading-relaxed max-w-xl"
+            className="text-xs sm:text-sm md:text-base font-light text-white/70 mb-5 sm:mb-6 md:mb-7 leading-relaxed max-w-xl mx-auto sm:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -237,36 +254,64 @@ export default function ShaderShowcase() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 md:gap-4 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <Link to="/problems" className="sm:flex-none">
+            <Link to="/problems" className="w-full sm:w-auto">
               <motion.button
-                className="px-6 sm:px-8 md:px-10 py-4 md:py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm min-w-[200px]"
+                className="w-full px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm sm:min-w-[160px] md:min-w-[180px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Problem Statement
               </motion.button>
             </Link>
+            <Link to="/certificates" className="w-full sm:w-auto">
+              <motion.button
+                className="w-full px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm sm:min-w-[160px] md:min-w-[180px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Certificates
+              </motion.button>
+            </Link>
             <motion.a
               href="https://hack-with-stack.devfolio.co/application"
               target="_blank"
               rel="noopener noreferrer"
-              className="sm:flex-none px-6 sm:px-8 md:px-10 py-4 md:py-4 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-sm md:text-base transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl inline-block text-center min-w-[200px]"
+              className="w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-sm md:text-base transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl inline-block text-center sm:min-w-[160px] md:min-w-[180px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Register Now
             </motion.a>
           </motion.div>
+
+          {/* AWS Brand Collaboration */}
+          <motion.div
+            className="mt-6 sm:mt-7 md:mt-9 flex flex-col sm:flex-row items-center sm:items-center gap-2.5 sm:gap-3 justify-center sm:justify-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <p className="text-xs sm:text-sm md:text-base font-light text-white/70 text-center sm:text-left">
+              In Association with
+            </p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 border border-white/20">
+              <img 
+                src="/aws-logo.png" 
+                alt="Amazon Web Services" 
+                className="h-4 sm:h-5 md:h-6 w-auto object-contain opacity-90"
+              />
+            </div>
+          </motion.div>
         </div>
       </main>
 
       <div className="absolute bottom-20 right-4 sm:bottom-12 sm:right-6 md:bottom-8 md:right-8 z-30">
-        <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center">
+        <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
           <PulsingBorder
             colors={["#06b6d4", "#0891b2", "#f97316", "#00FF88", "#FFD700", "#FF6B35", "#ffffff"]}
             colorBack="#00000000"
@@ -302,6 +347,74 @@ export default function ShaderShowcase() {
           </motion.svg>
         </div>
       </div>
+
+      {/* Certificate Download Popup */}
+      {showCertificatePopup && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowCertificatePopup(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowCertificatePopup(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <X className="h-5 w-5 text-gray-500" />
+            </button>
+
+            <div className="text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
+              >
+                <Award className="h-10 w-10 text-white" />
+              </motion.div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                🎉 Certificates Available!
+              </h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Participated in Hack with Stack? Your certificate is ready to download!
+              </p>
+
+              <div className="space-y-3">
+                <Link
+                  to="/certificates"
+                  onClick={() => setShowCertificatePopup(false)}
+                  className="block w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <Download className="h-5 w-5" />
+                    Download Certificate
+                  </span>
+                </Link>
+                
+                <button
+                  onClick={() => setShowCertificatePopup(false)}
+                  className="block w-full px-6 py-3 rounded-full border-2 border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-all duration-300"
+                >
+                  Maybe Later
+                </button>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-4">
+                Search by name, email, or certificate ID
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   )
 }
